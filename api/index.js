@@ -11,7 +11,7 @@ import roomsRoute from "./routes/rooms.js";
 // use app refer express
 const app = express();
 
-dotenv.config(); // ??
+dotenv.config(); // การบอกเพื่อมา config โปรแกรม
 
 // Connecting to mongodb atras
 const connect = async () => {
@@ -33,13 +33,14 @@ mongoose.connection.on("connected", () => {
 
 //middlewares
 
-app.use(express.json()); //?
+app.use(express.json()); // ทั้งหมดทั้งมวลให้เป็นก่อน json obj
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/hotels", hotelsRoute);
 app.use("/api/rooms", roomsRoute);
 
+// next() error
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;
   const errorMessage = err.status || "Something went wrong";
