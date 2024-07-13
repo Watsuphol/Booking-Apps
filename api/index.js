@@ -7,6 +7,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
+import cookieParser from "cookie-parser";
 
 // use app refer express
 const app = express();
@@ -32,7 +33,7 @@ mongoose.connection.on("connected", () => {
 });
 
 //middlewares
-
+app.use(cookieParser());
 app.use(express.json()); // ทั้งหมดทั้งมวลให้เป็นก่อน json obj
 
 app.use("/api/auth", authRoute);
